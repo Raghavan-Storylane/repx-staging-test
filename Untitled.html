@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demoly — Interactive product demos</title>
+<style>
+  :root{
+    --purple-50:#FDEDF6;
+    --purple-100:#FBD3EA;
+    --purple-500:#ED2DA0;
+    --purple-600:#D01C8B;
+    --purple-700:#A81571;
+    --ink:#14122B;
+    --ink-soft:#5B5876;
+    --bg:#FFFFFF;
+    --line:#EAE7F7;
+    --radius:12px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:var(--font);
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* nav */
+  header{border-bottom:1px solid var(--line);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;}
+  .logo-mark{width:22px;height:22px;border-radius:6px;background:var(--purple-500);display:inline-block;}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .btn{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--purple-500);color:#fff;}
+  .btn-primary:hover{background:var(--purple-600);}
+  .btn-ghost{color:var(--ink);}
+  .btn-outline{border:1px solid var(--line);color:var(--ink);}
+
+  /* hero */
+  .hero{padding:88px 0 56px;text-align:center;}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--purple-50);color:var(--purple-700);
+    border:1px solid var(--purple-100);
+    padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;
+    margin-bottom:24px;
+  }
+  h1{
+    font-size:52px;
+    line-height:1.12;
+    letter-spacing:-0.02em;
+    font-weight:700;
+    max-width:780px;
+    margin:0 auto 20px;
+  }
+  .hero p{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:560px;
+    margin:0 auto 32px;
+  }
+  .hero-ctas{display:flex;gap:14px;justify-content:center;margin-bottom:56px;}
+  .hero-ctas .btn{padding:13px 24px;font-size:15px;}
+
+  /* browser mock */
+  .demo-frame{
+    max-width:920px;
+    margin:0 auto;
+    border-radius:16px;
+    border:1px solid var(--line);
+    box-shadow:0 24px 60px -30px rgba(20,18,43,0.25);
+    overflow:hidden;
+    background:#fff;
+  }
+  .demo-topbar{
+    display:flex;align-items:center;gap:6px;
+    padding:12px 16px;
+    border-bottom:1px solid var(--line);
+    background:#FAFAFD;
+  }
+  .dot{width:9px;height:9px;border-radius:50%;background:#DDD9F0;}
+  .demo-url{
+    margin-left:10px;font-size:12px;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:6px;
+    padding:4px 10px;
+  }
+  .demo-body{
+    padding:36px 32px;
+    background:linear-gradient(180deg,#FBFAFF 0%,#fff 60%);
+    position:relative;
+    min-height:280px;
+    text-align:left;
+  }
+  .demo-cards{display:flex;gap:16px;margin-bottom:20px;}
+  .metric-card{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;}
+  .metric-card .label{font-size:12px;color:var(--ink-soft);margin-bottom:6px;}
+  .metric-card .value{font-size:22px;font-weight:700;}
+  .metric-card .value.purple{color:var(--purple-600);}
+  .demo-row{display:flex;gap:12px;align-items:center;margin-bottom:18px;}
+  .pill{background:var(--purple-500);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;border-radius:8px;}
+  .pill-outline{border:1px solid var(--line);font-size:13px;padding:9px 16px;border-radius:8px;color:var(--ink-soft);}
+  .cursor-dot{
+    position:absolute;width:14px;height:14px;border-radius:50%;
+    background:var(--purple-600);
+    box-shadow:0 0 0 6px var(--purple-100);
+    right:120px;bottom:64px;
+  }
+  .tooltip{
+    position:absolute;bottom:34px;right:60px;
+    background:var(--ink);color:#fff;font-size:12px;
+    padding:8px 12px;border-radius:8px;max-width:180px;
+  }
+
+  /* logos */
+  .logos{padding:48px 0;text-align:center;border-bottom:1px solid var(--line);}
+  .logos .label{font-size:13px;color:var(--ink-soft);margin-bottom:24px;text-transform:uppercase;letter-spacing:.06em;}
+  .logo-row{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;color:#B6B2CE;font-weight:700;font-size:18px;}
+
+  /* features */
+  .features{padding:88px 0;}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 56px;}
+  .section-head h2{font-size:34px;font-weight:700;letter-spacing:-0.01em;margin:0 0 12px;}
+  .section-head p{color:var(--ink-soft);font-size:16px;margin:0;}
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .feature-card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;
+  }
+  .feature-icon{
+    width:40px;height:40px;border-radius:10px;
+    background:var(--purple-50);color:var(--purple-600);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;margin-bottom:16px;
+  }
+  .feature-card h3{font-size:17px;margin:0 0 8px;}
+  .feature-card p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  /* testimonial */
+  .testimonial{background:var(--purple-50);padding:72px 0;text-align:center;}
+  .testimonial blockquote{
+    font-size:26px;font-weight:600;letter-spacing:-0.01em;
+    max-width:680px;margin:0 auto 20px;color:var(--ink);
+  }
+  .testimonial .who{color:var(--ink-soft);font-size:14px;}
+
+  /* cta band */
+  .cta-band{padding:96px 0;text-align:center;}
+  .cta-band h2{font-size:36px;font-weight:700;margin:0 0 28px;}
+
+  footer{border-top:1px solid var(--line);padding:48px 0 32px;}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-bottom:32px;}
+  .foot-col h4{font-size:13px;color:var(--ink-soft);margin:0 0 12px;text-transform:uppercase;letter-spacing:.05em;}
+  .foot-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--line);padding-top:24px;
+    font-size:13px;color:var(--ink-soft);flex-wrap:wrap;gap:12px;
+  }
+
+  @media (max-width:800px){
+    h1{font-size:34px;}
+    .nav-links{display:none;}
+    .feature-grid{grid-template-columns:1fr;}
+    .demo-cards{flex-direction:column;}
+    .foot-grid{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="logo-mark"></span>Demoly</div>
+      <div class="nav-links">
+        <a href="#">Platform</a>
+        <a href="#">Solutions</a>
+        <a href="#">Customers</a>
+        <a href="#">Pricing</a>
+        <a href="#">Resources</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="#">Login</a>
+        <a class="btn btn-primary" href="#">Start for free</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">★ 4.8 rated · 1,000+ reviews</span>
+    <h1>Turn your product into a demo anyone can click through</h1>
+    <p>Build interactive product tours in minutes and share a link that lets prospects explore your product themselves — no install, no login.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#">Start for free</a>
+      <a class="btn btn-outline" href="#">Book a demo</a>
+    </div>
+
+    <div class="demo-frame">
+      <div class="demo-topbar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="demo-url">app.acme.com/dashboard</span>
+      </div>
+      <div class="demo-body">
+        <div class="demo-cards">
+          <div class="metric-card">
+            <div class="label">Revenue</div>
+            <div class="value">$48,200</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Active users</div>
+            <div class="value purple">1,204</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Open deals</div>
+            <div class="value">37</div>
+          </div>
+        </div>
+        <div class="demo-row">
+          <span class="pill">Create invoice</span>
+          <span class="pill-outline">Export report</span>
+        </div>
+        <div class="cursor-dot"></div>
+        <div class="tooltip">Click here to create your first invoice →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-embed">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom: 24px;">
+      <h2>Ask Lily inside Demoly</h2>
+      <p>Container embed — fills the host element below.</p>
+    </div>
+  </div>
+  <div id="lily-embed" style="width: 100%; height: 640px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #f7f7f8;"></div>
+</section>
+
+<section class="logos">
+  <div class="wrap">
+    <div class="label">Trusted by teams at</div>
+    <div class="logo-row">
+      <span>Northwind</span>
+      <span>Brightpath</span>
+      <span>Fieldstone</span>
+      <span>Vertex</span>
+      <span>Loomstack</span>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Everything you need to demo, without the demo call</h2>
+      <p>Record once, personalize per audience, and know exactly what buyers clicked before you follow up.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">1</div>
+        <h3>Click-through, not video</h3>
+        <p>Prospects interact with real screens and flows — not a recording they passively watch.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">2</div>
+        <h3>Share a single link</h3>
+        <p>Drop it in an email, a deal room, or your homepage. No account needed to view.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">3</div>
+        <h3>See what they clicked</h3>
+        <p>Track which steps a prospect lingered on so you know exactly how to follow up.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">4</div>
+        <h3>Personalize per account</h3>
+        <p>Swap in a prospect's logo, name, or data so every demo feels built just for them.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">5</div>
+        <h3>Works everywhere</h3>
+        <p>Embed on your site, attach to a campaign, or run live on a call — same demo, every channel.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">6</div>
+        <h3>Built in minutes</h3>
+        <p>Capture your product once and publish a polished, on-brand demo the same day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap">
+    <blockquote>"Our demo went from a 30-minute call to a link prospects explore on their own time — and it converts better."</blockquote>
+    <div class="who">Director of Marketing, mid-market SaaS company</div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Make buying easy</h2>
+    <a class="btn btn-primary" href="#" style="padding:14px 28px;font-size:16px;">Start for free</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>Platform</h4>
+        <a href="#">Interactive demos</a>
+        <a href="#">Sandbox demos</a>
+        <a href="#">Hubs</a>
+      </div>
+      <div class="foot-col">
+        <h4>Solutions</h4>
+        <a href="#">Marketing</a>
+        <a href="#">Sales</a>
+        <a href="#">Customer success</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="#">Blog</a>
+        <a href="#">Help docs</a>
+        <a href="#">What's new</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#">Careers</a>
+        <a href="#">Pricing</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Demoly</span>
+      <span>Privacy · Terms</span>
+    </div>
+  </div>
+</footer>
+<button id="open-chat">Open Chat</button>
+<button id="close-chat">Close Chat</button>
+<button id="show-chat">Show Widget</button>
+<button id="hide-chat">Hide Widget</button>
+
+<script async src="https://js.storylane.io/js/test/repx.js" data-id="ogitdrxogbv2"></script>
+</body>
+</html>
