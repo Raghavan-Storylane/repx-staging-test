@@ -293,7 +293,15 @@ input{
 <div class="card-content">
 <h3>Product Two</h3>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-<button class="success">Add to Cart</button>
+<button class="success" onclick="addToCart()">Add to Cart</button>
+<p id="cartMessage" style="margin-top:15px;color:green;font-weight:bold;"></p>
+
+<script>
+function addToCart() {
+    document.getElementById("cartMessage").textContent =
+        "✅ Product added to cart successfully!";
+        }
+</script>
 </div>
 </div>
 
