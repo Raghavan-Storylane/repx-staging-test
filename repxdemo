@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova - Modern Workspace</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, sans-serif;
+  color: #202333;
+  background: #f8f9fc;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 9%;
+  background: white;
+}
+.logo { font-size: 25px; font-weight: bold; color: #6554e8; }
+nav a { text-decoration: none; color: #555; margin-left: 25px; }
+button {
+  background: #6554e8;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 22px;
+  cursor: pointer;
+}
+.hero {
+  padding: 90px 10%;
+  text-align: center;
+  background: linear-gradient(135deg,#eeedff,#f8f9fc);
+}
+.hero h1 { font-size: 48px; max-width: 700px; margin: 0 auto 20px; }
+.hero p { color: #666; font-size: 18px; margin-bottom: 30px; }
+.container { max-width: 1100px; margin: auto; padding: 65px 25px; }
+.heading { text-align: center; margin-bottom: 35px; }
+.heading p { color: #777; margin-top: 10px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+.card h3 { margin: 15px 0 10px; }
+.card p { color: #777; line-height: 1.6; }
+.icon { font-size: 32px; }
+.about {
+  background: #24243b;
+  color: white;
+  padding: 65px 10%;
+  text-align: center;
+}
+.about p { color: #ccc; max-width: 650px; margin: 18px auto; line-height: 1.7; }
+.testimonial {
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  line-height: 1.7;
+}
+.pricing {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 350px;
+  margin: auto;
+  border: 1px solid #eee;
+}
+.price { font-size: 38px; font-weight: bold; margin: 20px; }
+footer {
+  background: #20243a;
+  color: white;
+  padding: 35px;
+  text-align: center;
+}
+@media(max-width:700px) {
+  .cards { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 34px; }
+  nav { flex-wrap: wrap; gap: 15px; }
+  nav a { margin-left: 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">✦ NOVA</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <button onclick="alert('Welcome to Nova!')">Get Started</button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <h1>Work smarter. Create something amazing.</h1>
+  <p>A simple workspace designed to help teams collaborate, create and grow.</p>
+  <button onclick="alert('Getting started!')">Explore Platform →</button>
+</section>
+
+<section class="container" id="features">
+  <div class="heading">
+    <h2>Everything you need</h2>
+    <p>Powerful tools to make your everyday work easier.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Fast Performance</h3>
+      <p>Enjoy a smooth experience with tools designed for speed and productivity.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔒</div>
+      <h3>Secure Workspace</h3>
+      <p>Your projects and data stay protected with modern security features.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌎</div>
+      <h3>Work Together</h3>
+      <p>Collaborate with your team from anywhere in the world.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2>Built for modern teams</h2>
+  <p>Nova brings your projects, conversations and ideas together in one beautiful workspace. Spend less time managing work and more time creating great things.</p>
+  <button onclick="alert('Learn more clicked!')">Learn More</button>
+</section>
+
+<section class="container">
+  <div class="heading">
+    <h2>What people say</h2>
+    <p>Trusted by teams who love getting things done.</p>
+  </div>
+  <div class="testimonial">
+    <p>"Nova has completely changed how our team works. Everything feels simpler, faster and more organized."</p>
+    <br>
+    <strong>Alex Morgan</strong>
+    <p>Product Manager</p>
+  </div>
+</section>
+
+<section class="container" id="pricing">
+  <div class="heading">
+    <h2>Simple Pricing</h2>
+    <p>Start building better workflows today.</p>
+  </div>
+  <div class="pricing">
+    <h3>Professional</h3>
+    <div class="price">$19<span style="font-size:15px"> / month</span></div>
+    <p>Unlimited projects</p><br>
+    <p>Team collaboration</p><br>
+    <p>Priority support</p><br>
+    <button onclick="alert('Plan selected!')">Choose Plan</button>
+  </div>
+</section>
+
+<footer>
+  <h2>✦ NOVA</h2>
+  <p style="margin:12px">Making work feel effortless.</p>
+  <p>© 2026 Nova Workspace. All rights reserved.</p>
+</footer>
+<script async src="https://js.storylane.io/js/staging/repx.js" data-id="simcqfoc5ehu"></script>
+
+</body>
+</html>
